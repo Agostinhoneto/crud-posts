@@ -14,10 +14,11 @@ class PostsTableSeeder extends Seeder
     public function run(): void
     {
         Post::create([
+            'user_id' => 1,
             'titulo' => 'teste',
             'subtitulo' => 'teste de subtitulo',
             'publicado' => 1,
-            'conteudo' => 'teste'
+            'conteudo' => 'teste xxcxccxcxdffdfd'
         ]);
     }
 }
