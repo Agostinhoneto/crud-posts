@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('category_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo', 2048);
-            $table->string('subtitulo', 2048);
-            $table->longText('conteudo');
-            $table->boolean('publicado')->default(false);
-            $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('category_posts');
     }
 };
