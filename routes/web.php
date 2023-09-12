@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//require __DIR__.'/auth.php';
+
 Route::get('/posts/index', [PostsController::class, 'index']);
 
-Route::get('/', [PostsController::class, 'home'])->name('home');
-Route::get('/search', [PostsController::class, 'search'])->name('search');
-Route::get('/category/{category:slug}', [PostsController::class, 'byCategory'])->name('by-category');
-Route::get('/{post:slug}', [PostsController::class, 'show'])->name('view');
+//Route::get('/', [PostsController::class, 'home'])->name('home');
+//Route::get('/search', [PostsController::class, 'search'])->name('search');
+//Route::get('/category/{category:slug}', [PostsController::class, 'byCategory'])->name('by-category');
+//Route::get('/{post:slug}', [PostsController::class, 'show'])->name('view');
