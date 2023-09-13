@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo','slug'];
+    protected $fillable = ['title','slug'];
 
     public function posts():BelongsToMany
     {

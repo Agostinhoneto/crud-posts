@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +14,12 @@ class PostsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::create([
-            'user_id' => 1,
-            'titulo' => 'teste',
-            'subtitulo' => 'teste de subtitulo',
-            'publicado' => 1,
-            'conteudo' => 'teste xxcxccxcxdffdfd'
+        Post::factory(20)->create([
+            'user_id' => UserFactory::factory(),
+            'titulo' => fake()->unique()->words(5, true),
+            'subtitulo' => fn($attr) => \Str::slug($attr['titulo']),
+            'publicado' => true,
+            'conteudo' => fake()->text(80),
         ]);
     }
 }
