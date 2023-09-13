@@ -12,13 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('titulo', 2048);
-            $table->string('subtitulo', 2048);
-            $table->longText('conteudo');
-            $table->boolean('publicado')->default(false);
-            $table->foreignIdFor(\App\Models\User::class, 'user_id');
+            $table->id()->index();
+            $table->string('title')->index();
+            $table->string('slug')->unique()->index();
+            $table->boolean('published')->index()->default(false);
+            $table->longText('content')->nullable();
+            $table->unsignedBigInteger('author_id')->index();
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('author_id')->references('id')
+                ->on('authors')->onDelete('cascade'); // cascade|set null
+
+            $table->index('created_at');
+            $table->index('updated_at');
+            $table->index('deleted_at');
         });
     }
 

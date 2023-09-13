@@ -16,7 +16,7 @@ class PostsTableSeeder extends Seeder
     {
         Post::factory(20)->create([
             'user_id' => UserFactory::factory(),
-            'titulo' => fake()->unique()->words(5, true),
+            'title' => fake()->unique()->words(5, true),
             'subtitulo' => fn($attr) => \Str::slug($attr['titulo']),
             'publicado' => true,
             'conteudo' => fake()->text(80),
