@@ -19,19 +19,56 @@ class PostsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('author_id')
+                    ->searchable()
+                    ->preload()
+                    ->relationship('author', 'name')
+                    ->required(),
+
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->reactive()
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->unique(Post::class, 'slug'),
+
+                Forms\Components\Toggle::make('published')
+                    ->required(),
+
+                Forms\Components\RichEditor::make('content')
+                    ->columnSpanFull(),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('author_id')
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('title')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('slug')
+                ->searchable(),
+            Tables\Columns\IconColumn::make('published')
+                ->boolean(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

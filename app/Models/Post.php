@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = ['titulo','subtitulo','publicado','conteudo'];
+    protected $fillable = ['title','slug','published','content','author_id'];
+
+    protected $casts =[
+        'published' => 'boolean',
+    ];
 
     public function user():BelongsTo
     {
@@ -23,4 +29,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
