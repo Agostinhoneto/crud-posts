@@ -31,33 +31,33 @@ class UsersResource extends Resource
                     ->reactive(),
 
                 Forms\Components\TextInput::make('password')
-                ->password()
-                ->required()
-                ->reactive(),
+                    ->password()
+                    ->required()
+                    ->reactive(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            Tables\Columns\TextColumn::make('name')
-            ->searchable(),
-        ])
-        ->filters([
-            //
-        ])
-        ->actions([
-            Tables\Actions\EditAction::make(),
-        ])
-        ->bulkActions([
-            Tables\Actions\BulkActionGroup::make([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]),
-        ])
-        ->emptyStateActions([
-            Tables\Actions\CreateAction::make(),
-        ]);
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ])
+            ->emptyStateActions([
+                Tables\Actions\CreateAction::make(),
+            ]);
     }
 
     public static function getRelations(): array
