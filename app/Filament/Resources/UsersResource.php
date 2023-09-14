@@ -23,30 +23,41 @@ class UsersResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->reactive(),
+                Forms\Components\TextInput::make('email')
+                    ->required()
+                    ->reactive(),
+
+                Forms\Components\TextInput::make('password')
+                ->password()
+                ->required()
+                ->reactive(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
-            ]);
+        ->columns([
+            Tables\Columns\TextColumn::make('name')
+            ->searchable(),
+        ])
+        ->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ])
+        ->emptyStateActions([
+            Tables\Actions\CreateAction::make(),
+        ]);
     }
 
     public static function getRelations(): array
