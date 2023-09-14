@@ -32,8 +32,8 @@ class PostsResource extends Resource
 
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->reactive()
-                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                    ->reactive(),
+                  //  ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
 
                 Forms\Components\TextInput::make('slug')
                     ->required()
