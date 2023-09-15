@@ -6,6 +6,7 @@ use App\Models\Post;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class PostsTableSeeder extends Seeder
 {
@@ -14,12 +15,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory(20)->create([
-            'user_id' => UserFactory::factory(),
-            'title' => fake()->unique()->words(5, true),
-            'subtitulo' => fn($attr) => \Str::slug($attr['titulo']),
-            'publicado' => true,
-            'conteudo' => fake()->text(80),
-        ]);
+        Post::factory(20)->create()->each(function (Post $post) {
+            $post->categories()->attach(Category::factory()->createOne());
+        });
     }
 }

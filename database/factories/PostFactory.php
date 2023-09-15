@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,13 +18,12 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->realText(50);
         return [
-            'titulo' => $title,
-            'subtitulo' => fn($attr) => \Str::slug($attr['titulo']),
-            'conteudo' => fake()->realText(5000),
-            'publicado' => fake()->boolean,
-            'user_id' => 1
+            'title' => fake()->unique()->words(20, true),
+            'slug' => fn($attr) => \Str::slug($attr['title']),
+            'published' => fake()->boolean(90),
+            'content' => fake()->realText(5000),
+            'author_id' => Author::factory(),
         ];
     }
 }

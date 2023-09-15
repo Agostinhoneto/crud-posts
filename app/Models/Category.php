@@ -10,9 +10,12 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug'];
+    protected $fillable = [
+        'title',
+        'slug',
+    ];
 
-    public function posts():BelongsToMany
+    public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
     }
