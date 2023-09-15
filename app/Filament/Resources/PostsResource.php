@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostsResource\Pages;
-use App\Filament\Resources\PostsResource\RelationManagers;
-use App\Models\Post;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Post;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PostsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PostsResource\RelationManagers;
 
 class PostsResource extends Resource
 {
@@ -32,11 +33,17 @@ class PostsResource extends Resource
 
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->reactive(),
-                  //  ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set, $operation) {
+                        if($operation != 'create') {
+                            return;
+                        }
 
+                        $set('slug', Str::slug($operation));
+                    }),
                 Forms\Components\TextInput::make('slug')
                     ->required()
+                    ->disabledOn('edit')
                     ->unique(Post::class, 'slug'),
 
                 Forms\Components\Toggle::make('published')
