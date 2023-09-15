@@ -13,20 +13,26 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title','slug','published','content','author_id'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'published',
+        'content',
+        'author_id',
+    ];
 
-    protected $casts =[
+    protected $casts = [
         'published' => 'boolean',
     ];
 
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function categories():BelongsToMany
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_posts');
     }
 
     public function author(): BelongsTo
