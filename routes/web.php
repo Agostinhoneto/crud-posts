@@ -20,9 +20,5 @@ Route::get('/', function () {
 
 //require __DIR__.'/auth.php';
 
-Route::get('/posts', [PostsController::class, 'index']);
-
-//Route::get('/', [PostsController::class, 'home'])->name('home');
-//Route::get('/search', [PostsController::class, 'search'])->name('search');
-//Route::get('/category/{category:slug}', [PostsController::class, 'byCategory'])->name('by-category');
-//Route::get('/{post:slug}', [PostsController::class, 'show'])->name('view');
+Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
+Route::get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');

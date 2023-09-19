@@ -10,7 +10,12 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::where('published', true)->paginate(20);
-
         return view('posts.index', compact('posts'));
+    }
+
+    public function show($id)
+    {
+        $posts = Post::findOrFail($id)->get();
+        return view('posts.show',compact('posts'));
     }
 }
