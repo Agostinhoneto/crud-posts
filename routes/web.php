@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 //require __DIR__.'/auth.php';
 
-Route::get('/posts/index', [PostsController::class, 'index']);
+Route::get('/posts', [PostsController::class, 'index']);
 
 //Route::get('/', [PostsController::class, 'home'])->name('home');
 //Route::get('/search', [PostsController::class, 'search'])->name('search');
