@@ -7,7 +7,12 @@
                     </li>
                         <x-post-list-item :post="$post" />
                      <li>
-                        <a href="{{ route('posts.show', $post->id) }}">Detalhes</a>
+                        <a href="{{ url('posts/' . $post->id) }}" title="Ver Posts">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true">
+                                </i> View
+                            </button>
+                        </a>
+
                 @endforeach
             </div>
             <div>

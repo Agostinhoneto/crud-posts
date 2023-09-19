@@ -15,7 +15,8 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $posts = Post::findOrFail($id)->get();
-        return view('posts.show',compact('posts'));
+        $posts = Post::find($id);
+        return view('posts.show')->with('posts',$posts);
     }
+
 }
