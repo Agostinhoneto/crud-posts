@@ -19,14 +19,33 @@ class PostsController extends Controller
         return view('posts.show', ['posts' => $posts]);
     }
 
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->content = $request->input('content');
+        $post->published = $request->input('published');
+        $post->author_id = $request->input('autor_id');
+        $post->save();
+        return redirect()->route('posts.index')->with('success', 'Post criado com sucesso!');
+    }
 
     public function edit($id)
     {
         $posts = Post::find($id);
-        return view('posts.edit',['posts' => $posts]);
-
+        return view('posts.edit', ['posts' => $posts]);
     }
-
 
     public function update(Request $request, $id)
     {
@@ -36,7 +55,7 @@ class PostsController extends Controller
         ]);
         $posts->title = $request->input('title');
         $posts->save();
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post Atualizado com sucesso!');;
     }
 
     public function destroy($id)
