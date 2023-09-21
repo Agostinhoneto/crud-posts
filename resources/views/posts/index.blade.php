@@ -4,15 +4,28 @@
         <section class="w-full md:w-2/3  px-3">
             <div class=" flex flex-col items-center">
                 @foreach ($posts as $post)
-                    </li>
-                        <x-post-list-item :post="$post" />
-                     <li>
+                    <x-post-list-item :post="$post" />
+                    <div>
                         <a href="{{ url('posts/' . $post->id) }}" title="Ver Posts">
-                            <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true">
-                                </i> View
+                            <button class="btn btn-info btn-sm">
+                                <i class="fa fa-eye" aria-hidden="true">Detalhes</i>
                             </button>
                         </a>
-
+                    </div>
+                    <div>
+                        <a href="{{ url('posts/edit/' . $post->id) }}" title="Ver Posts">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fa fa-eye" aria-hidden="true">Editar</i>
+                            </button>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{ url('posts/' . $post->id) }}" title="Ver Posts">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fa fa-eye" aria-hidden="true">Deletar</i>
+                            </button>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <div>

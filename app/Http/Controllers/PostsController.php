@@ -19,4 +19,28 @@ class PostsController extends Controller
         return view('posts.show', ['posts' => $posts]);
     }
 
+
+    public function edit($id)
+    {
+        $posts = Post::find($id);
+        return view('posts.edit',['posts' => $posts]);
+
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $posts = Post::find($id);
+        $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+        $posts->title = $request->input('title');
+        $posts->save();
+        return redirect()->route('posts.index');
+    }
+
+    public function destroy($id)
+    {
+        dd($id);
+    }
 }

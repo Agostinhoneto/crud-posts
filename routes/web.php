@@ -22,3 +22,6 @@ Route::get('/', function () {
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
+Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/update/{id}', [PostsController::class, 'update'])->name('posts.update');
+Route::delete('/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');

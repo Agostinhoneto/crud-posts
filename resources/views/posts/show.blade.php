@@ -3,11 +3,9 @@
         <!-- Posts Section -->
         <section class="w-full md:w-2/3  px-3">
             <div class=" flex flex-col items-center">
-                   <h4>
-                        Title: {{ $posts->title }}
-                    </h4>
-            </div>
-            <div>
+                <h4>
+                    Title: {{ $posts->title }}
+                </h4>
             </div>
         </section>
     </div>
