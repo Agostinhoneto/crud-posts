@@ -19,7 +19,11 @@
         </div>
         <div class="form-group">
             <label for="published">Publicado</label>
-            <input type="checkbox" name="published" value="published">
+            <input type="checkbox" name="published" value="1">
+        </div>
+        <div class="form-group">
+            <label for="published">Autor</label>
+            <input type="checkbox" name="autor_id" value="1">
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Criar Post</button>

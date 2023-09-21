@@ -1,4 +1,7 @@
+@extends('layouts.app')
+@section('content')
 <div class="container">
+    <div class="row">
     <h1>Editar Posts</h1>
 
     <form method="POST" action="{{ route('posts.update', $posts->id) }}">
@@ -11,3 +14,5 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </div>
+</div>
+    @endsection
