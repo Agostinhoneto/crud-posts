@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        $authors = Author::all();
+        return view('posts.create', ['authors' => $authors]);
     }
 
     public function store(Request $request)
@@ -38,6 +40,8 @@ class PostsController extends Controller
         $post->published = $request->input('published');
         $post->author_id = $request->input('autor_id');
         $post->save();
+
+
         return redirect()->route('posts.index')->with('success', 'Post criado com sucesso!');
     }
 
