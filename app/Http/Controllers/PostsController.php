@@ -22,7 +22,7 @@ class PostsController extends Controller
 
     public function create()
     {
-        $authors = Author::all();
+        $authors = Author::where('ativo' , true)->get();
         return view('posts.create', ['authors' => $authors]);
     }
 
@@ -38,17 +38,17 @@ class PostsController extends Controller
         $post->slug = $request->input('slug');
         $post->content = $request->input('content');
         $post->published = $request->input('published');
-        $post->author_id = $request->input('autor_id');
+        $post->author_id = $request->input('author_id');
         $post->save();
-
-
         return redirect()->route('posts.index')->with('success', 'Post criado com sucesso!');
     }
 
     public function edit($id)
     {
+        $authors = Author::where('ativo' , true)->get();
         $posts = Post::find($id);
-        return view('posts.edit', ['posts' => $posts]);
+
+        return view('posts.edit', ['posts' => $posts , 'authors' => $authors]);
     }
 
     public function update(Request $request, $id)
