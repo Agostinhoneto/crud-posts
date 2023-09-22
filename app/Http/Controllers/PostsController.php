@@ -62,8 +62,13 @@ class PostsController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post Atualizado com sucesso!');;
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        dd($id);
+        $post = Post::find($id);
+        if (!$post) {
+            return redirect()->route('posts.index')->with('error', 'Post não encontrado.');
+        }
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Post excluído com sucesso.');
     }
 }

@@ -30,15 +30,14 @@
                                         <a href="{{ url('posts/edit/' . $post->id) }}"><i
                                             class="fas fa-edit text-info mr-1"></i>
                                         </a>
-                                        <a href="{{ url('posts/destroy/' . $post->id) }}" title="Ver Posts">
-                                                <i class="fas fa-trash text-danger mr-1"></i>
+                                        <a href="{{ url('posts/delete/' . $post->id) }}">
+                                            <i class="fas fa-trash text-danger mr-1"></i>
                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $posts->links('pagination::tailwind') }}
                 </div>
                 </section>
             </div>
