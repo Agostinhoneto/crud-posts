@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
+    <div class="container mt-4">
+        <form action="{{ route('posts.store') }}" method="POST">
             <h1>Editar Posts</h1>
 
             <form method="POST" action="{{ route('posts.update', $posts->id) }}">
@@ -38,6 +38,5 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
-        </div>
     </div>
 @endsection

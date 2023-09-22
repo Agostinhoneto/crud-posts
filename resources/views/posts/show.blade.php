@@ -1,18 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="container mx-auto flex flex-wrap py-6">
-                <section class="w-full md:w-2/3  px-3">
-                    <div class="container">
-                        <div class=" flex flex-col items-center">
-                            <br>
-                            <div class="jumbotron">
-                                Title: {{ $posts->title }}
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <div class="container mt-4">
+        <a href="{{ route('posts.index') }}" type="button" class="mt-4 mb-4 btn btn-primary">Posts</a>
+        <div class="container mx-auto flex flex-wrap py-6">
+            <div class="jumbotron">
+                Title: {{ $posts->title }}
             </div>
         </div>
     </div>
