@@ -22,17 +22,11 @@
             <br>
             <div class="form-group">
                 <label for="published">Publicado</label>
-                <input type="checkbox" name="published" value="1">
+                <input type="checkbox" name="published" value="1" @checked(old('published'))>
             </div>
-            <br>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-              </select>
             <div class="form-group">
-                <select class="form-select" aria-label="Default select example" name="author_id">
+                <label for="exampleFormControlSelect1">Author</label>
+                <select class="form-control" id="exampleFormControlSelect1">
                     @foreach ($authors as $author)
                         <option>selecione o Author</option>
                         <option value="{{ $author->id }}">
@@ -40,8 +34,8 @@
                         </option>
                     @endforeach
                 </select>
-            </div>
-            <br><br>
+              </div>
+           <br>
             <div>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </div>
