@@ -25,14 +25,16 @@
                 <input type="checkbox" name="published" value="1">
             </div>
             <br>
-            <select name="author_id" class="form-select" aria-label="Default select example">
-                @foreach ($authors as $author)
-                    <option>selecione o Author</option>
-                    <option value="{{ $author->id }}">
-                        {{ $author->name }}
-                    </option>
-                @endforeach
-            </select>
+            <div class="form-group">
+                <select class="form-select" aria-label="Default select example" name="author_id">
+                    @foreach ($authors as $author)
+                        <option>selecione o Author</option>
+                        <option value="{{ $author->id }}">
+                            {{ $author->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <br><br>
             <div>
                 <button type="submit" class="btn btn-success">Salvar</button>
