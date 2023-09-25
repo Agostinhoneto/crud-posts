@@ -26,16 +26,15 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Author</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select name="author_id" class="form-control" id="exampleFormControlSelect1">
                     @foreach ($authors as $author)
-                        <option>selecione o Author</option>
                         <option value="{{ $author->id }}">
                             {{ $author->name }}
                         </option>
                     @endforeach
                 </select>
-              </div>
-           <br>
+            </div>
+            <br>
             <div>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </div>

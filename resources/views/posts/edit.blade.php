@@ -6,7 +6,6 @@
 
             <form method="POST" action="{{ route('posts.update', $posts->id) }}">
                 @csrf
-                @method('PUT')
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="form-control" value="{{ $posts->title }}">
@@ -23,12 +22,12 @@
                 </div>
                 <div class="form-group">
                     <label for="published">Publicado</label>
-                    <input type="checkbox" name="published" value="1" value="{{ $posts->published }}">
+                    <input type="checkbox" name="published" value="1" value="{{$posts->published}}">
                 </div>
                 <div class="form-group">
-                    <select name="author_id" class="form-select" aria-label="Default select example">
+                    <label for="exampleFormControlSelect1">Author</label>
+                    <select name="author_id" class="form-control" id="exampleFormControlSelect1">
                         @foreach ($authors as $author)
-                            <option>selecione o Author</option>
                             <option value="{{ $author->id }}">
                                 {{ $author->name }}
                             </option>

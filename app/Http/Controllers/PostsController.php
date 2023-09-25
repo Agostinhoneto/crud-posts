@@ -40,7 +40,7 @@ class PostsController extends Controller
         $post->published = $request->input('published');
         $post->author_id = $request->input('author_id');
         $post->save();
-        return redirect()->route('posts.index')->with('success', 'Post criado com sucesso!');
+        return redirect('/posts')->with('success', 'Post criado com sucesso!');
     }
 
     public function edit($id)
@@ -58,17 +58,21 @@ class PostsController extends Controller
             'title' => 'required|string|max:255',
         ]);
         $posts->title = $request->input('title');
+        $posts->slug = $request->input('slug');
+        $posts->content = $request->input('content');
+        $posts->published = $request->input('published');
+        $posts->author_id = $request->input('author_id');
         $posts->save();
-        return redirect()->route('posts.index')->with('success', 'Post Atualizado com sucesso!');;
+        return redirect('/posts')->with('success', 'Post Atualizado com sucesso!');;
     }
 
     public function delete($id)
     {
         $post = Post::find($id);
         if (!$post) {
-            return redirect()->route('posts.index')->with('error', 'Post não encontrado.');
+            return redirect('/posts')->with('error', 'Post não encontrado.');
         }
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post excluído com sucesso.');
+        return redirect('/posts')->with('success', 'Post excluído com sucesso.');
     }
 }
