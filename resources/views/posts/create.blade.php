@@ -25,6 +25,12 @@
                 <input type="checkbox" name="published" value="1">
             </div>
             <br>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
             <div class="form-group">
                 <select class="form-select" aria-label="Default select example" name="author_id">
                     @foreach ($authors as $author)
