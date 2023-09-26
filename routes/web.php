@@ -16,3 +16,4 @@ Route::post('/posts/store', [PostsController::class, 'store'])->name('posts.stor
 Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
 Route::post('/posts/update/{id}', [PostsController::class, 'update'])->name('posts.update');
 Route::get('/posts/delete/{id}', [PostsController::class, 'delete'])->name('posts.delete');
+Route::get('/posts/author/{id}', [PostsController::class, 'author'])->name('posts.author');

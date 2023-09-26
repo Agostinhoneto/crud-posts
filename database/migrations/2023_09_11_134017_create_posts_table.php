@@ -18,13 +18,11 @@ return new class extends Migration
             $table->boolean('published')->index()->default(false);
             $table->longText('content')->nullable();
             $table->unsignedBigInteger('author_id')->index();
-
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
             $table->foreign('author_id')->references('id')
-                ->on('authors')->onDelete('cascade'); // cascade|set null
-
+                ->on('authors')->onDelete('cascade');
             $table->index('created_at');
             $table->index('updated_at');
             $table->index('deleted_at');

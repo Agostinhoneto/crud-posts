@@ -6,27 +6,27 @@
             <h1>Criar Posts:</h1>
             <br>
             <div class="form-group">
-                <label for="title">Título</label>
-                <input type="text" name="title" id="title" class="form-control">
+                <label for="title">Título*</label>
+                <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
                 <label for="slug">Slug</label>
-                <input type="text" name="slug" id="slug" class="form-control">
+                <input type="text" name="slug" id="slug" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
                 <label for="content">Conteúdo</label>
-                <textarea name="content" id="content" class="form-control" rows="4"></textarea>
+                <textarea name="content" id="content" class="form-control" rows="4" required></textarea>
             </div>
             <br>
             <div class="form-group">
                 <label for="published">Publicado</label>
-                <input type="checkbox" name="published" value="1" @checked(old('published'))>
+                <input type="checkbox" name="published" value="1" @checked(old('published')) required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Author</label>
-                <select name="author_id" class="form-control" id="exampleFormControlSelect1">
+                <select name="author_id" class="form-control" id="exampleFormControlSelect1" required>
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}">
                             {{ $author->name }}

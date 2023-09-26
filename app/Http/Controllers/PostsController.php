@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    protected $limit = 3;
+
     public function index()
     {
         $posts = Post::where('published', true)->paginate(20);
@@ -20,11 +23,27 @@ class PostsController extends Controller
         return view('posts.show', ['posts' => $posts]);
     }
 
+    public function author(User $author)
+    {
+        dd($author);
+        $authorName = $author->name;
+
+        $posts = $author->posts()
+            ->with('category')
+            ->latestFirst()
+            ->published()
+            ->simplePaginate($this->limit);
+
+        return view("posts.index", compact('posts', 'name'));
+    }
+
+
     public function create()
     {
-        $authors = Author::where('ativo' , true)->get();
+        $authors = Author::all();
         return view('posts.create', ['authors' => $authors]);
     }
+
 
     public function store(Request $request)
     {
@@ -40,15 +59,16 @@ class PostsController extends Controller
         $post->published = $request->input('published');
         $post->author_id = $request->input('author_id');
         $post->save();
+
         return redirect('/posts')->with('success', 'Post criado com sucesso!');
     }
 
     public function edit($id)
     {
-        $authors = Author::where('ativo' , true)->get();
+        $authors = Author::all();
         $posts = Post::find($id);
 
-        return view('posts.edit', ['posts' => $posts , 'authors' => $authors]);
+        return view('posts.edit', ['posts' => $posts, 'authors' => $authors]);
     }
 
     public function update(Request $request, $id)
@@ -75,4 +95,32 @@ class PostsController extends Controller
         $post->delete();
         return redirect('/posts')->with('success', 'Post excluído com sucesso.');
     }
+
+
+    /*
+    public function uploadArquivo(Request $request)
+    {
+        $request->validate([
+            'arquivo' => 'required|file|mimes:pdf,doc,docx|max:2048', // Defina as regras de validação do arquivo
+        ]);
+
+        if ($request->hasFile('arquivo')) {
+            $arquivo = $request->file('arquivo');
+
+            // Defina um nome único para o arquivo (por exemplo, timestamp + nome original do arquivo)
+            $nomeArquivo = time() . '_' . $arquivo->getClientOriginalName();
+
+            // Mova o arquivo para o diretório de destino (por exemplo, storage/app/arquivos)
+            $arquivo->storeAs('arquivos', $nomeArquivo);
+
+            // Você pode salvar o nome do arquivo no banco de dados se necessário
+            // Exemplo: $registro->arquivo = $nomeArquivo;
+            // $registro->save();
+
+            return redirect()->back()->with('success', 'Arquivo enviado com sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao enviar arquivo.');
+    }
+    */
 }
