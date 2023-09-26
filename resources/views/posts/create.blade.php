@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-4">
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h1>Criar Posts:</h1>
             <br>
@@ -35,6 +35,8 @@
                 </select>
             </div>
             <br>
+            <input type="file" name="image">
+            <br><br>
             <div>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </div>

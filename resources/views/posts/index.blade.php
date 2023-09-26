@@ -10,6 +10,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Id</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Slug</th>
 
@@ -18,9 +19,17 @@
                         </thead>
                         <tbody>
                             @foreach ($posts as $post)
+                                @if ($post->image_url)
+                                    <div class="post-item-image">
+                                        <a href="{{ route('posts.show', $post->id) }}">
+                                            <img src="{{ $post->image}}" alt="">
+                                        </a>
+                                    </div>
+                                @endif
                                 <tr>
                                     <th scope="row">#</th>
                                     <td>{{ $post->id }}</td>
+                                    <td>{{ $post->image }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>

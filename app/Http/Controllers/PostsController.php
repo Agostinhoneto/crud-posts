@@ -46,10 +46,11 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
+        if ($request->hasFile('image')) {
+            $arquivo = $request->file('image');
+            $nomeArquivo = $arquivo->getClientOriginalName();
+            $arquivo->storeAs('', $nomeArquivo, 'local');
+        }
 
         $post = new Post;
         $post->title = $request->input('title');
@@ -57,6 +58,8 @@ class PostsController extends Controller
         $post->content = $request->input('content');
         $post->published = $request->input('published');
         $post->author_id = $request->input('author_id');
+        $post->image = $arquivo;
+
         $post->save();
 
         return redirect('/posts')->with('success', 'Post criado com sucesso!');
@@ -65,7 +68,6 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         $authors = Author::all();
-
         return view('posts.edit', ['post' => $post, 'authors' => $authors]);
     }
 
@@ -97,31 +99,4 @@ class PostsController extends Controller
         $post->delete();
         return redirect('/posts')->with('success', 'Post excluído com sucesso.');
     }
-
-    /*
-    public function uploadArquivo(Request $request)
-    {
-        $request->validate([
-            'arquivo' => 'required|file|mimes:pdf,doc,docx|max:2048', // Defina as regras de validação do arquivo
-        ]);
-
-        if ($request->hasFile('arquivo')) {
-            $arquivo = $request->file('arquivo');
-
-            // Defina um nome único para o arquivo (por exemplo, timestamp + nome original do arquivo)
-            $nomeArquivo = time() . '_' . $arquivo->getClientOriginalName();
-
-            // Mova o arquivo para o diretório de destino (por exemplo, storage/app/arquivos)
-            $arquivo->storeAs('arquivos', $nomeArquivo);
-
-            // Você pode salvar o nome do arquivo no banco de dados se necessário
-            // Exemplo: $registro->arquivo = $nomeArquivo;
-            // $registro->save();
-
-            return redirect()->back()->with('success', 'Arquivo enviado com sucesso!');
-        }
-
-        return redirect()->back()->with('error', 'Erro ao enviar arquivo.');
-    }
-    */
 }

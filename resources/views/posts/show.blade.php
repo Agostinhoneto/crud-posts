@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-8">
                 <article class="post-item post-detail">
-                    @if ($post->image_url)
+                    @if ($post->image)
                         <div class="post-item-image">
-                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
+                            <img src="{{ $post->image}}" alt="{{ $post->title }}">
                         </div>
                     @endif
 
