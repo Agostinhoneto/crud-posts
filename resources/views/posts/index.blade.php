@@ -28,7 +28,7 @@
                                             <i class="fas fa-eye text-primary mr-1"></i>
                                         </a>
                                         <a href="{{ url('posts/edit/' . $post->id) }}"><i
-                                            class="fas fa-edit text-info mr-1"></i>
+                                                class="fas fa-edit text-info mr-1"></i>
                                         </a>
                                         <a href="{{ url('posts/delete/' . $post->id) }}">
                                             <i class="fas fa-trash text-danger mr-1"></i>
@@ -42,12 +42,12 @@
                 </section>
             </div>
         </div>
-    @endsection
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#dataTable').dataTable({
-                "ordering": false
-            })
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#dataTable').dataTable({
+                    "ordering": false
+                })
 
-        });
-    </script>
+            });
+        </script>
+    @endsection
