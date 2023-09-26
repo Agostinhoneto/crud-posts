@@ -17,10 +17,9 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        $posts = Post::findOrFail($id);
-        return view('posts.show', ['posts' => $posts]);
+        return view('posts.show', ['post' => $post]);
     }
 
     public function author(User $author)
@@ -63,39 +62,41 @@ class PostsController extends Controller
         return redirect('/posts')->with('success', 'Post criado com sucesso!');
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
         $authors = Author::all();
-        $posts = Post::find($id);
 
-        return view('posts.edit', ['posts' => $posts, 'authors' => $authors]);
+        return view('posts.edit', ['post' => $post, 'authors' => $authors]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $posts = Post::find($id);
         $request->validate([
             'title' => 'required|string|max:255',
         ]);
-        $posts->title = $request->input('title');
-        $posts->slug = $request->input('slug');
-        $posts->content = $request->input('content');
-        $posts->published = $request->input('published');
-        $posts->author_id = $request->input('author_id');
-        $posts->save();
-        return redirect('/posts')->with('success', 'Post Atualizado com sucesso!');;
+
+        $request->merge([
+            'published' => boolval($request->input('published', false)),
+        ]);
+
+        $post->update(
+            $request->only([
+                'title',
+                'slug',
+                'content',
+                'published',
+                'author_id',
+            ])
+        );
+
+        return redirect('/posts')->with('success', 'Post Atualizado com sucesso!');
     }
 
-    public function delete($id)
+    public function delete(Post $post)
     {
-        $post = Post::find($id);
-        if (!$post) {
-            return redirect('/posts')->with('error', 'Post não encontrado.');
-        }
         $post->delete();
         return redirect('/posts')->with('success', 'Post excluído com sucesso.');
     }
-
 
     /*
     public function uploadArquivo(Request $request)

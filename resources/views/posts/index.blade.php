@@ -24,13 +24,13 @@
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>
-                                        <a title="Detalhes do Post" href="{{ url('posts/' . $post->id) }}">
+                                        <a title="Detalhes do Post" href="{{ route('posts.show', $post->id) }}">
                                             <i class="fas fa-eye text-primary mr-1"></i>
                                         </a>
-                                        <a href="{{ url('posts/edit/' . $post->id) }}"><i
-                                            class="fas fa-edit text-info mr-1"></i>
+                                        <a href="{{ route('posts.edit', $post->id) }}"><i
+                                                class="fas fa-edit text-info mr-1"></i>
                                         </a>
-                                        <a href="{{ url('posts/delete/' . $post->id) }}">
+                                        <a href="{{ route('posts.delete', $post->id) }}">
                                             <i class="fas fa-trash text-danger mr-1"></i>
                                         </a>
                                     </td>
@@ -42,12 +42,15 @@
                 </section>
             </div>
         </div>
-    @endsection
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#dataTable').dataTable({
-                "ordering": false
-            })
+        <div class="w-100">
+            {{ $posts->links('pagination::bootstrap-5') }}
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#dataTable').dataTable({
+                    "ordering": false
+                })
 
-        });
-    </script>
+            });
+        </script>
+    @endsection
