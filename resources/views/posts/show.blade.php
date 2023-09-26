@@ -5,23 +5,23 @@
         <div class="row">
             <div class="col-md-8">
                 <article class="post-item post-detail">
-                    @if ($posts->image_url)
+                    @if ($post->image_url)
                         <div class="post-item-image">
-                            <img src="{{ $posts->image_url }}" alt="{{ $posts->title }}">
+                            <img src="{{ $post->image_url }}" alt="{{ $post->title }}">
                         </div>
                     @endif
 
                     <div class="post-item-body">
                         <div class="padding-10">
-                            <h1>{{ $posts->title }}</h1>
+                            <h1>{{ $post->title }}</h1>
                             <div class="post-meta no-border">
                                 <ul class="post-meta-group">
                                     <li>
                                         <i class="fa fa-user"></i>
-                                        <a title="Detalhes do Post" href="{{ url('posts/author/' . $posts->id) }}"></a>
+                                        <a title="Detalhes do Post" href="{{ url('posts/author/' . $post->id) }}"></a>
                                     </li>
                                     <li><i class="fa fa-clock-o"></i>
-                                        <time> {{ $posts->created_at }}</time>
+                                        <time> {{ $post->created_at }}</time>
                                     </li>
                                     <li><i class="fa fa-folder"></i>
                                         <a href=""></a>
