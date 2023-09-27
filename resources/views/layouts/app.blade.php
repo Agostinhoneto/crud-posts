@@ -24,13 +24,13 @@
               <a class="nav-link" href="{{ route('posts.index')}}">Post<span class="sr-only">Home</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="s">Categorias</a>
+              <a class="nav-link" href="{{ route('categories.index')}}">Categorias</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">Usuários</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="{{('admin')}}">Login</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -27,4 +27,4 @@ Route::get('/categories/create',[CategoryController::class, 'create'])->name('ca
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/{id}/edit',[CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}/update',[CategoryController::class, 'update'])->name('categories.update');;
-Route::delete('/categories/{id}/destroy', [CategoryController::class, 'destroy'])->name('categories.destroy');;
+Route::delete('/categories/{id}/delete', [CategoryController::class, 'delete'])->name('categories.delete');;

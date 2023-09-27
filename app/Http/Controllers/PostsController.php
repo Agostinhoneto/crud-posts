@@ -24,9 +24,7 @@ class PostsController extends Controller
 
     public function author(User $author)
     {
-        dd($author);
         $authorName = $author->name;
-
         $posts = $author->posts()
             ->with('category')
             ->latestFirst()
