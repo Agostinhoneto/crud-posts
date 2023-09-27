@@ -41,6 +41,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @include('layouts.sidebar')
                 </div>
                 </section>
             </div>

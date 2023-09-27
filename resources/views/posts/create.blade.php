@@ -35,7 +35,9 @@
                 </select>
             </div>
             <br>
-            <input type="file" name="image">
+            <div class="form-group">
+                <input class="form-control-file" id="exampleFormControlFile1" type="file" name="image" >
+            </div>
             <br><br>
             <div>
                 <button type="submit" class="btn btn-success">Salvar</button>

@@ -21,8 +21,8 @@
                 <ul class="categories">
                     @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('category', $category->slug) }}"><i class="fa fa-angle-right"></i> {{ $category->title }}</a>
-                            <span class="badge pull-right">{{ $category->posts->count() }}</span>
+                            <a href="{{ route('categories.index', $category->slug) }}"><i class="fa fa-angle-right"></i> {{ $category->title }}</a>
+                            <span class="badge pull-right">{{ $category}}</span>
                         </li>
                     @endforeach
                 </ul>
@@ -35,23 +35,21 @@
             </div>
             <div class="widget-body">
                 <ul class="popular-posts">
-                    @foreach ($popularPosts as $post)
                         <li>
                             @if ($post->image_thumb_url)
                                 <div class="post-image">
-                                    <a href="{{ route('blog.show', $post->slug) }}">
+                                    <a href="{{ route('posts.show', $post->slug) }}">
                                         <img src="{{ $post->image_thumb_url }}" />
                                     </a>
                                 </div>
                             @endif
                             <div class="post-body">
-                                <h6><a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a></h6>
+                                <h6><a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a></h6>
                                 <div class="post-meta">
                                     <span>{{ $post->date }}</span>
                                 </div>
                             </div>
                         </li>
-                    @endforeach
                 </ul>
             </div>
         </div>
