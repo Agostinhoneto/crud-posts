@@ -5,23 +5,20 @@
         <div class="row">
             <div class="col-md-8">
                 <article class="post-item post-detail">
-                    @if ($post->image)
                         <div class="post-item-image">
-                            <img src="{{ $post->image}}" alt="{{ $post->title }}">
+                            <img src="{{$categories->title }}">
                         </div>
-                    @endif
-
                     <div class="post-item-body">
                         <div class="padding-10">
-                            <h1>{{ $post->title }}</h1>
+                            <h1>{{ $categories->title }}</h1>
                             <div class="post-meta no-border">
                                 <ul class="post-meta-group">
                                     <li>
                                         <i class="fa fa-user"></i>
-                                        <a title="Detalhes do Post" href="{{ url('posts/author/' . $post->id) }}"></a>
+                                        <a title="Detalhes do Categoria"></a>
                                     </li>
                                     <li><i class="fa fa-clock-o"></i>
-                                        <time> {{ $post->created_at }}</time>
+                                        <time> {{ $categories->created_at }}</time>
                                     </li>
                                     <li><i class="fa fa-folder"></i>
                                         <a href=""></a>
@@ -32,7 +29,6 @@
                         </div>
                     </div>
                 </article>
-
                 <article class="post-author padding-10">
                     <div class="media">
                         <div class="media-left">
@@ -45,6 +41,5 @@
                         </div>
                     </div>
                 </article>
-                <!-- comments here -->
             </div>
         @endsection
